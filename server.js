@@ -6,6 +6,10 @@ const axios = require("axios");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
