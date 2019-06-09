@@ -44,11 +44,14 @@ client.on("message", message => {
       .then(dat => {
         // console.log("???");
         let selected = dat.data.legends.selected;
+        character = Object.keys(selected);
+        console.log(character);
         selected = selected[Object.keys(selected)[0]];
         if (selected.games_played && selected.damage) {
           let damage = selected.damage / selected.games_played;
+          damage = Math.floor(damage);
           message.channel.send(
-            msg[1] + " damage per game is approx: " + damage
+            msg[1] + " damage per game is approx " + damage + " on " + character
           );
         } else {
           message.channel.send(
