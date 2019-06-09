@@ -31,3 +31,5 @@ client.on("message", message => {
 });
 
 client.login("NTg3MTM5NDg2MjgzMjAyNTgw.XPyOmQ._PT9JQl4yieIj25mvRXfOXHqIJg");
+
+app.listen("4000", console.log("botrunning"));
