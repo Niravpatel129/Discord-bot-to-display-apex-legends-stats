@@ -55,7 +55,7 @@ client.on("message", message => {
           );
         } else {
           message.channel.send(
-            "On your selected character requip the banner: games played and total damage to see your average damage per game"
+            "On your selected character equip the banner: games played and total damage to see your average damage per game"
           );
         }
       })
