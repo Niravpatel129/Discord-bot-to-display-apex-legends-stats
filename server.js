@@ -18,6 +18,7 @@ function loadImageForSelectedCharacter(url, games, dmg, ad, name) {
     Jimp.read(url)
       .then(function(image) {
         loadedImage = image;
+        image.crop(0, 50, 652, 729);
         return Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
       })
       .then(function(font) {
