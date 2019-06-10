@@ -8,8 +8,6 @@ app.use("/exported-images", express.static("static"));
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-//end of jimp stuff
-
 //function to set the localimage to the character with the data on top
 function loadImageForSelectedCharacter(url, games, dmg, ad, name) {
   var name = name.charAt(0).toUpperCase() + name.slice(1);
@@ -68,7 +66,6 @@ client.on("message", message => {
   }
 
   if (msg[0] === "!dmg") {
-    console.log(msg[1]);
     axios
       .get(
         "http://api.mozambiquehe.re/bridge?version=2&platform=PC&player=" +
@@ -78,14 +75,19 @@ client.on("message", message => {
       .then(dat => {
         let selected = dat.data.legends.selected;
         character = Object.keys(selected);
+
         console.log(character);
         selected = selected[Object.keys(selected)[0]];
+
         if (selected.games_played && selected.damage) {
           let damage = selected.damage / selected.games_played;
           damage = Math.floor(damage);
           let img = selected.ImgAssets.icon;
           let playername = msg[1];
           const getResult = async () => {
+            if (msg[1] === "raieez") {
+              message.channel.send("A-I-B-A-T-C");
+            }
             return await loadImageForSelectedCharacter(
               img,
               selected.games_played,
@@ -100,10 +102,6 @@ client.on("message", message => {
               files: ["picture.png"]
             });
           });
-
-          // message.channel.send(
-          //   msg[1] + " damage per game is approx " + damage + " on " + character
-          // );
         } else {
           message.channel.send(
             "On your selected character equip the banner: games played and total damage to see your average damage per game"
