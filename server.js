@@ -48,6 +48,18 @@ client.on("ready", () => {
 });
 
 client.on("message", message => {
+  //debugging
+  if (message === "debugging") {
+    axios
+      .get(
+        "http://api.mozambiquehe.re/bridge?version=2&platform=PC&player=raieez&auth=Kae5tcqrkg3A05ajxLA9"
+      )
+      .then(res => {
+        console.log(res);
+      });
+  }
+
+  //end of debugging
   let msg = message.content.split(" ");
   if (msg[0] === "!lvl") {
     axios
@@ -58,7 +70,6 @@ client.on("message", message => {
       )
       .then(dat => {
         let level = dat.data.global.level;
-        // msg.channel("hello");
         message.channel.send(msg[1] + " player level is: " + level);
       })
       .catch(() => {
@@ -99,14 +110,22 @@ client.on("message", message => {
           };
           getResult().then(() => {
             console.log("2");
-            message.channel.send({
-              files: ["picture.png"]
-            });
+            message.channel
+              .send({
+                files: ["picture.png"]
+              })
+              .catch(() => {
+                message.channel.send("Something wen't wrong, message the dev");
+              });
           });
         } else {
-          message.channel.send(
-            "On your selected character equip the banner: games played and total damage to see your average damage per game"
-          );
+          message.channel
+            .send(
+              "On your selected character equip the banner: games played and total damage to see your average damage per game"
+            )
+            .catch(() => {
+              message.channel.send("Something wen't wrong, message the dev");
+            });
         }
       })
       .catch(() => {
