@@ -134,6 +134,6 @@ client.on("message", message => {
   }
 });
 
-client.login("NTg3MTM5NDg2MjgzMjAyNTgw.XPyX3Q._YSeFuFQavPV3iNq4h9gTGcoVA8");
+client.login("");
 
 app.listen(process.env.PORT || 4001, console.log("botrunning"));
